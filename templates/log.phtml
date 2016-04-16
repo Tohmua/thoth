@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <?php require __DIR__ . '/sections/head.phtml'; ?>
+  <body>
+    <?php require __DIR__ . '/sections/nav.phtml'; ?>
+
+    <div class="container marketing">
+      <hr class="featurette-divider">
+      <?php if (isset($id)) { echo '<h1>History for log ' . $id . '</h1>'; } ?>
+      <table class="table table-hover">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Action</th>
+            <th>Status</th>
+            <th>Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          echo '<tr>
+            <th scope="row">7</th>
+            <td>' . date("d/m/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y"))) . '</td>
+            <td>' . date("H:i:s", mktime(1, 10, 33, date("m"), date("d"), date("Y"))) . '</td>
+            <td>Finished</td>
+            <td style="color:green;">info</td>
+            <td></td>
+          </tr>';
+          echo '<tr>
+            <th scope="row">6</th>
+            <td>' . date("d/m/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y"))) . '</td>
+            <td>' . date("H:i:s", mktime(0, 53, 21, date("m"), date("d"), date("Y"))) . '</td>
+            <td>Importing data</td>
+            <td style="color:green;">info</td>
+            <td></td>
+          </tr>';
+          echo '<tr>
+            <th scope="row">5</th>
+            <td>' . date("d/m/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y"))) . '</td>
+            <td>' . date("H:i:s", mktime(0, 51, 44, date("m"), date("d"), date("Y"))) . '</td>
+            <td>Creating Schema</td>
+            <td style="color:green;">info</td>
+            <td></td>
+          </tr>';
+          echo '<tr>
+            <th scope="row">4</th>
+            <td>' . date("d/m/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y"))) . '</td>
+            <td>' . date("H:i:s", mktime(0, 49, 56, date("m"), date("d"), date("Y"))) . '</td>
+            <td>Parsing Schema</td>
+            <td style="color:green;">info</td>
+            <td></td>
+          </tr>';
+          echo '<tr>
+            <th scope="row">3</th>
+            <td>' . date("d/m/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y"))) . '</td>
+            <td>' . date("H:i:s", mktime(0, 49, 50, date("m"), date("d"), date("Y"))) . '</td>
+            <td>Verifying Download</td>
+            <td style="color:green;">info</td>
+            <td></td>
+          </tr>';
+          echo '<tr>
+            <th scope="row">2</th>
+            <td>' . date("d/m/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y"))) . '</td>
+            <td>' . date("H:i:s", mktime(0, 21, 34, date("m"), date("d"), date("Y"))) . '</td>
+            <td>Downloading Exports</td>
+            <td style="color:green;">info</td>
+            <td></td>
+          </tr>';
+          echo '<tr>
+            <th scope="row">1</th>
+            <td>' . date("d/m/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y"))) . '</td>
+            <td>' . date("H:i:s", mktime(0, 21, 30, date("m"), date("d"), date("Y"))) . '</td>
+            <td>Checking Connection To Server</td>
+            <td style="color:orange;">warning</td>
+            <td>Certificate expires in 30 days</td>
+          </tr>';
+          ?>
+        </tbody>
+      </table>
+
+      <hr class="featurette-divider">
+
+      <?php require __DIR__ . '/sections/footer.phtml'; ?>
+    </div>
+    <?php require __DIR__ . '/sections/foot.phtml'; ?>
+  </body>
+</html>

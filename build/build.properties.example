@@ -1,0 +1,7 @@
+db.username=root
+db.password=
+db.host=localhost
+
+root.dir=/data
+
+git.repo=https://github.com/Tohmua/thoth.git

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <?php require __DIR__ . '/sections/head.phtml'; ?>
+  <body>
+    <?php require __DIR__ . '/sections/nav.phtml'; ?>
+
+    <div class="container marketing">
+      <hr class="featurette-divider">
+
+      <h1>Export Schema</h1>
+
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#patients">Patients</a>
+            </h4>
+          </div>
+          <div id="patients" class="panel-collapse collapse">
+            <div class="panel-body">
+              <table class="table table-hover">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Length</th>
+                    <th>Attributes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td>PRIMARY_KEY</td>
+                </tr>
+                <tr>
+                  <td>content</td>
+                  <td>TEXT</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>created</td>
+                  <td>DATETIME</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>updated</td>
+                  <td>DATETIME</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>parent_id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>user_id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#sessions">Sessions</a>
+            </h4>
+          </div>
+          <div id="sessions" class="panel-collapse collapse">
+            <div class="panel-body">
+              <table class="table table-hover">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Length</th>
+                    <th>Attributes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td>PRIMARY_KEY</td>
+                </tr>
+                <tr>
+                  <td>content</td>
+                  <td>TEXT</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>created</td>
+                  <td>DATETIME</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>updated</td>
+                  <td>DATETIME</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>parent_id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>user_id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#useractivity">User Activity</a>
+            </h4>
+          </div>
+          <div id="useractivity" class="panel-collapse collapse">
+            <div class="panel-body">
+              <table class="table table-hover">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Length</th>
+                    <th>Attributes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td>PRIMARY_KEY</td>
+                </tr>
+                <tr>
+                  <td>content</td>
+                  <td>TEXT</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>created</td>
+                  <td>DATETIME</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>updated</td>
+                  <td>DATETIME</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>parent_id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>user_id</td>
+                  <td>INT</td>
+                  <td>11</td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <?php require __DIR__ . '/sections/footer.phtml'; ?>
+    </div>
+    <?php require __DIR__ . '/sections/foot.phtml'; ?>
+  </body>
+</html>

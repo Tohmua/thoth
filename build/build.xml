@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="thoth" default="update">
+    <property file="build.properties" />
+     <tstamp>
+         <format property="tstamp" pattern="%Y%m%d_%H%M%S" />
+     </tstamp>
+
+    <target name="build">
+        <phingcall target="composer-dev" />
+    </target>
+
+    <target name="update">
+        <phingcall target="backup" />
+        <exec command="git fetch" />
+        <exec outputProperty="git.tag.latest" command="git describe --tags `git rev-list --tags --max-count=1`" dir="${root.dir}"/>
+        <exec command="git checkout ${git.tag.latest}" />
+        <phingcall target="composer-live" />
+    </target>
+
+    <target name="backup">
+        <phingcall target="clean-backups" />
+        <phingcall target="backup-dir" />
+        <phingcall target="backup-code" />
+        <phingcall target="backup-compress" />
+    </target>
+
+    <!-- Remove all but last 4 backups -->
+     <target name="clean-backups">
+         <echo msg="clear backups" />
+         <exec command="/usr/bin/find ${root.dir}/backup/ -maxdepth 1 -name '*.gz' | head -n -4 | xargs -d '\n' rm -f" />
+     </target>
+
+     <!-- Create Backup Directory -->
+     <target name="backup-dir">
+         <mkdir dir="${root.dir}/backup/${tstamp}" />
+     </target>
+
+     <!-- Backup our code -->
+     <target name="backup-code">
+         <echo msg="Backing Up Code" />
+         <copy todir="${root.dir}/backup/${tstamp}">
+             <fileset dir="${root.dir}" />
+             <exclude name="${root.dir}/backup"/>
+         </copy>
+     </target>
+
+     <!-- Compress our backups -->
+     <target name="backup-compress">
+         <echo msg="Compressing Database Using GZip" />
+         <exec command="tar -zcf ${root.dir}/backup/${tstamp}.gz ${root.dir}/backup/${tstamp}/*" />
+         <echo msg="Remove Uncompressed Files" />
+         <delete dir="${root.dir}/backup/${tstamp}" />
+     </target>
+
+     <!-- Run composer for live systems -->
+    <target name="composer-live">
+        <exec executable="bash" dir="${root.dir}">
+            <arg value="-c" />
+            <arg value="php composer.phar install --no-dev" />
+        </exec>
+    </target>
+
+    <!-- Run composer for development systems -->
+    <target name="composer-dev">
+        <exec executable="bash" dir="${root.dir}">
+            <arg value="-c" />
+            <arg value="php composer.phar install" />
+        </exec>
+    </target>
+</project>
