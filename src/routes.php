@@ -39,3 +39,11 @@ $app->get('/system-updates', function ($request, $response, $args) {
     // Render index view
     return $this->renderer->render($response, 'system-updates.phtml', $args);
 });
+
+$app->get('/run-export', function ($request, $response, $args) {
+    // Sample log message
+    $this->logger->info("'/run-export' route");
+
+    // Render index view
+    return $this->renderer->render($response, 'run-export.phtml', $args);
+});
