@@ -5,9 +5,9 @@ import Html.Attributes exposing (class)
 
 view dbStatus currentStatus =
   nav
-    [ class "u-pull-right eight columns" ]
+    [ class "eight columns" ]
     [ ul
-      []
+      [ class "u-pull-right" ]
       [ li [] [ text "Status" ]
       , li [] [ text "Run" ]
       , li [] [ text "Help" ]
