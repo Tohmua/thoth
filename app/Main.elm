@@ -3,8 +3,9 @@ import Html.Attributes exposing (class, src)
 import Html.App as Html
 
 import Navigation exposing (view)
+import Export
 
--- Fancy types, hwre.
+-- Fancy types, hwre
 
 type Dialog
   = DatabaseSchema
@@ -13,32 +14,33 @@ type Dialog
 
 type Status = Red | Amber | Green
 
--- Application state.
+-- Application state
 
 type alias Model =
-  { databaseStatus      : Status
+  { databaseStatus : Status
   , currentExportStatus : Status
-  , systemUpdateStatus  : Status
+  , systemUpdateStatus : Status
+  , exports : [Export.Model]
   }
 
 init : Model
 init =
-  { databaseStatus      = Red
+  { databaseStatus = Red
   , currentExportStatus = Red
-  , systemUpdateStatus  = Red
+  , systemUpdateStatus = Red
   }
 
--- Application actions.
+-- Application actions
 
 type Action
   = BuggerAll
 
--- Application updater.
+-- Application updater
 
 update : Action -> Model -> Model
 update action model = model
 
--- Application view.
+-- Application view
 
 view : Model -> Html msg
 view model =
@@ -50,6 +52,7 @@ view model =
         , Navigation.view
             model.databaseStatus
             model.currentExportStatus
+        , Accordion.view model.exports
         ]
     ]
 
