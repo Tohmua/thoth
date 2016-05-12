@@ -1,5 +1,5 @@
-import Html exposing (Html, div, header)
-import Html.Attributes exposing (class)
+import Html exposing (Html, div, header, img)
+import Html.Attributes exposing (class, src)
 import Html.App as Html
 
 import Navigation exposing (view)
@@ -46,7 +46,11 @@ view model =
     [ class "thoth-container" ]
     [ header
         []
-        [ Navigation.view model.databaseStatus model.currentExportStatus
+        [ img [ src "http://placehold.it/140x70" ] []
+
+        , Navigation.view
+            model.databaseStatus
+            model.currentExportStatus
         ]
     ]
 
