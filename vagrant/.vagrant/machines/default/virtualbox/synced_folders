@@ -1,1 +1,0 @@
-{"virtualbox":{"/data":{"guestpath":"/data","hostpath":"/Users/tom/Git/thoth","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/tom/Git/thoth/vagrant","disabled":false,"__vagrantfile":true}}}
