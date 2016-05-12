@@ -1,3 +1,4 @@
+composer.phar
 vagrant/.vagrant
 vendor/
 node_modules/

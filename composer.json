@@ -5,10 +5,10 @@
         "slim/php-view": "2.0.*",
         "monolog/monolog": "1.10.*",
         "phing/phing": "2.*",
-        "may-den/task-manager": "1.0.*"
+        "codegyre/robo": "*"
     },
     "require-dev": {
-	   "phpunit/phpunit": "5.3.*"
+	    "phpunit/phpunit": "5.3.*"
     },
     "repositories": [
         {
