@@ -1,6 +1,7 @@
 module Export exposing (Model, model, view)
 
-import Html exposing (Html, div, text)
+import Html exposing (Html, section, text)
+import Html.Attributes exposing (class)
 
 import Stage exposing (Model)
 
@@ -22,4 +23,15 @@ model =
 
 view : Model -> Html msg
 view model =
-  div [] [ text "literally all the bits" ]
+  section
+    []
+    [ section
+      [ class "one column" ]
+      [ text ">" ]
+    , section
+      [ class "five columns" ]
+      [ text model.dateTime ]
+    , section
+      [ class "six columns u-success" ]
+      [ text "Success" ]
+    ]

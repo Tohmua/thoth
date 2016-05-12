@@ -31,7 +31,27 @@ init =
   , systemUpdateStatus = Status.Red
   , exports = [
     { id = "1dfs"
-    , dateTime = "sefe"
+    , dateTime = "11/05/2016 09:00"
+    , stages = []
+    },
+    { id = "1dfs"
+    , dateTime = "10/05/2016 09:00"
+    , stages = []
+    },
+    { id = "1dfs"
+    , dateTime = "09/05/2016 09:00"
+    , stages = []
+    },
+    { id = "1dfs"
+    , dateTime = "08/05/2016 09:00"
+    , stages = []
+    },
+    { id = "1dfs"
+    , dateTime = "07/05/2016 09:00"
+    , stages = []
+    },
+    { id = "1dfs"
+    , dateTime = "06/05/2016 09:00"
     , stages = []
     }
   ]
