@@ -11,12 +11,20 @@
     </target>
 
     <target name="update">
-        <phingcall target="backup" />
         <exec command="git fetch --tags" />
         <exec outputProperty="git.tag.latest" command="git describe --tags `git rev-list --tags --max-count=1`" dir="${root.dir}"/>
-        <exec command="git checkout ${git.tag.latest}" />
-        <phingcall target="composer-live" />
-        <phingcall target="do-an-front-end" />
+        <if>
+            <isset property="${git.tag.latest}" />
+            <then>
+                <phingcall target="backup" />
+                <exec command="git checkout ${git.tag.latest}" />
+                <phingcall target="composer-live" />
+                <phingcall target="do-an-front-end" />
+            </then>
+            <else>
+                <echo level="error" msg="Unable to automatically update" />
+            </else>
+        </if>
     </target>
 
     <target name="backup">
