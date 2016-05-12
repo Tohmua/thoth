@@ -29,7 +29,12 @@ init =
   { databaseStatus = Status.Red
   , currentExportStatus = Status.Red
   , systemUpdateStatus = Status.Red
-  , exports = []
+  , exports = [
+    { id = "1dfs"
+    , dateTime = "sefe"
+    , stages = []
+    }
+  ]
   }
 
 -- Application actions
