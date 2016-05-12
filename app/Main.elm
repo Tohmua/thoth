@@ -21,6 +21,8 @@ type alias Model =
   , systemUpdateStatus  : Status
   }
 
+model = Model Green Amber Red
+
 -- Application actions.
 
 type Action
@@ -34,12 +36,13 @@ update action model = model
 -- Application view.
 
 view : Model -> Html msg
-view model =
+view (db, current, _) =
   div
     [ class "thoth-container" ]
     [ header
         []
-        [ Navigation.view ]
+        [ Navigation.view db current
+        ]
     ]
 
 main =
