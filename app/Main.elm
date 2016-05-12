@@ -21,7 +21,12 @@ type alias Model =
   , systemUpdateStatus  : Status
   }
 
-model = Model Green Amber Red
+init : Model
+init =
+  { databaseStatus      = Red
+  , currentExportStatus = Red
+  , systemUpdateStatus  = Red
+  }
 
 -- Application actions.
 
@@ -36,18 +41,18 @@ update action model = model
 -- Application view.
 
 view : Model -> Html msg
-view (db, current, _) =
+view model =
   div
     [ class "thoth-container" ]
     [ header
         []
-        [ Navigation.view db current
+        [ Navigation.view model.databaseStatus model.currentExportStatus
         ]
     ]
 
 main =
   Html.beginnerProgram
-      { model  = model
+      { model  = init
       , view   = view
       , update = update
       }
