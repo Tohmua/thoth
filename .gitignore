@@ -1,6 +1,7 @@
 vagrant/.vagrant
-vendor/
-node_modules/
+vendor
+elm-stuff
+node_modules
 build/build.properties
 logs/*.log
-backup/
+backup
