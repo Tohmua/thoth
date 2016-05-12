@@ -9,3 +9,12 @@ body {
 .u-failure {
   color: red;
 }
+
+header nav ul {
+  list-style-type: none;
+}
+
+header nav ul li {
+  float: left;
+  margin: 0 1rem;
+}

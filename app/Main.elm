@@ -43,11 +43,10 @@ update action model = model
 view : Model -> Html msg
 view model =
   div
-    [ class "thoth-container" ]
+    [ class "container" ]
     [ header
-        []
+        [ class "row" ]
         [ img [ src "http://placehold.it/140x70" ] []
-
         , Navigation.view
             model.databaseStatus
             model.currentExportStatus

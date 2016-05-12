@@ -17,6 +17,9 @@
     "url": "https://github.com/Tohmua/thoth/issues"
   },
   "homepage": "https://github.com/Tohmua/thoth#readme",
+  "devDependencies": {
+    "onchange": "^2.4.0"
+  },
   "dependencies": {
     "elm": "^0.17.0",
     "skeleton-css": "^2.0.4"
