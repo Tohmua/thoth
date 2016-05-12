@@ -15,9 +15,9 @@ type Status = Red | Amber | Green
 -- Application state.
 
 type alias Model =
-  { DatabaseStatus      : Status
-  , CurrentExportStatus : Status
-  , SystemUpdateStatus  : Status
+  { databaseStatus      : Status
+  , currentExportStatus : Status
+  , systemUpdateStatus  : Status
   }
 
 -- Application actions.
