@@ -1,6 +1,14 @@
 module Navigation exposing (view)
 
-import Html exposing (div, text)
+import Html exposing (nav, ul, li, text)
 
-view =
-  div [] [ text "hello" ]
+view dbStatus currentStatus =
+  nav
+    []
+    [ ul
+      []
+      [ li [] [ text "Status" ]
+      , li [] [ text "Run" ]
+      , li [] [ text "Help!!!" ]
+      ]
+    ]
