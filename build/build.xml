@@ -19,7 +19,7 @@
                 <phingcall target="backup" />
                 <exec command="git checkout ${git.tag.latest}" />
                 <phingcall target="composer-live" />
-                <phingcall target="do-an-front-end" />
+                <phingcall target="npm-live" />
             </then>
             <else>
                 <echo level="error" msg="Unable to automatically update" />
@@ -83,7 +83,21 @@
         </exec>
     </target>
 
-    <target name="do-an-front-end">
-        <echo msg="TODO: do an front end" />
+    <target name="npm-live">
+        <exec executable="bash" dir="${root.dir}">
+            <arg value="npm install --production" />
+        </exec>
+        <exec executable="bash" dir="${root.dir}">
+            <arg value="npm run build" /> <!-- TODO: make build:live -->
+        </exec>
+    </target>
+
+    <target name="npm-dev">
+        <exec executable="bash" dir="${root.dir}">
+            <arg value="npm install" />
+        </exec>
+        <exec executable="bash" dir="${root.dir}">
+            <arg value="npm run build" />
+        </exec>
     </target>
 </project>
