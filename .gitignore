@@ -6,3 +6,4 @@ build/build.properties
 logs/*.log
 backup
 npm-debug.log
+public/js
