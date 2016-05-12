@@ -8,11 +8,11 @@ view =
     [ class "cards row" ]
     [ li
         [ class "four columns card" ]
-        [ img [ src "http://placehold.it/320x280" ] [] ]
+        [ img [ src "http://placehold.it/280x320" ] [] ]
     , li
         [ class "four columns card" ]
-        [ img [ src "http://placehold.it/320x280" ] [] ]
+        [ img [ src "http://placehold.it/280x320" ] [] ]
     , li
         [ class "four columns card" ]
-        [ img [ src "http://placehold.it/320x280" ] [] ]
+        [ img [ src "http://placehold.it/280x320" ] [] ]
     ]
