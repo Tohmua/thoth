@@ -1,62 +1,85 @@
-module Accordion exposing (view)
+module Accordion exposing (view, Msg(..))
+
+{--where <- this fixes sublime's syntax highlighting, sorry Tom ! <- there's a space there, just for you --}
 
 import Html exposing (Html, section, text, button, div)
 import Html.Attributes exposing (class)
-
+import Html.Events exposing (onClick)
 import Export exposing (Model)
+import Status exposing (Status)
 
-type Filter
-  = All
-  | Successful
-  | Failed
+
+type Msg
+    = All
+    | Successful
+    | Failed
+
 
 type Action
-  = None
-  | UpdateFilter Filter
+    = None
+    | UpdateFilter Msg
 
-type alias UUID = String
 
-type alias Model =
-  { current : UUID
-  , filter : Filter
-  }
+view : List Export.Model -> Msg -> Html Msg
+view exports filter =
+    section []
+        [ section [ class "u-pull-right" ]
+            [ button
+                [ onClick All
+                , if filter == All then
+                    -- this is awful, I'm so sorry
+                    class "button-primary"
+                  else
+                    class ""
+                ]
+                [ text "All"
+                ]
+            , button
+                [ onClick Successful
+                , if filter == Successful then
+                    class "button-primary"
+                  else
+                    class ""
+                ]
+                [ text "Successful"
+                ]
+            , button
+                [ onClick Failed
+                , if filter == Failed then
+                    class "button-primary"
+                  else
+                    class ""
+                ]
+                [ text "Failed"
+                ]
+            ]
+        , div [ class "u-cf" ] []
+        , section [] (List.map exportRow (List.filter (matchesFilter filter) exports))
+        ]
 
-update : Action -> Model -> Model
-update action model =
-  case action of
-    None ->
-      model
 
-    UpdateFilter filter ->
-      model
+matchesFilter : Msg -> Export.Model -> Bool
+matchesFilter filter exportItem =
+    case filter of
+        All ->
+            True
 
-view : List Export.Model -> Html msg
-view exports =
-  section
-    []
-    [ section
-      [ class "u-pull-right" ]
-      [ button [] [ text "All" ]
-      , button [] [ text "Successful" ]
-      , button [] [ text "Failed" ]
-      ]
-    , div [ class "u-cf" ] []
-    , section [] (List.map exportRow exports)
-    ]
+        Successful ->
+            exportItem.status == "working"
 
+        Failed ->
+            exportItem.status == "broken"
+
+
+exportRow : Export.Model -> Html Msg
 exportRow exportItem =
-  section
-    [ class "row" ]
-    [ section
-      [ class "one column" ]
-      [ text ">" ]
-    , section
-      [ class "three columns" ]
-      [ text exportItem.id ]
-    , section
-      [ class "four columns" ]
-      [ text exportItem.dateTime ]
-    , section
-      [ class "four columns u-success" ]
-      [ text "Success" ]
-    ]
+    section [ class "row" ]
+        [ section [ class "one column" ]
+            [ text ">" ]
+        , section [ class "three columns" ]
+            [ text exportItem.id ]
+        , section [ class "four columns" ]
+            [ text exportItem.dateTime ]
+        , section [ class "four columns u-success" ]
+            [ text exportItem.status ]
+        ]
