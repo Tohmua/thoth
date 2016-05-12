@@ -3,7 +3,9 @@ import Html.Attributes exposing (class, src)
 import Html.App as Html
 
 import Navigation exposing (view)
-import Export
+import Export exposing (Model)
+import Status exposing (Status)
+import Accordion exposing (view)
 
 -- Fancy types, hwre
 
@@ -12,22 +14,21 @@ type Dialog
   | DerivedFields
   | UpdateSystem
 
-type Status = Red | Amber | Green
-
 -- Application state
 
 type alias Model =
   { databaseStatus : Status
   , currentExportStatus : Status
   , systemUpdateStatus : Status
-  , exports : [Export.Model]
+  , exports : List Export.Model
   }
 
 init : Model
 init =
-  { databaseStatus = Red
-  , currentExportStatus = Red
-  , systemUpdateStatus = Red
+  { databaseStatus = Status.Red
+  , currentExportStatus = Status.Red
+  , systemUpdateStatus = Status.Red
+  , exports = []
   }
 
 -- Application actions
@@ -52,7 +53,7 @@ view model =
         , Navigation.view
             model.databaseStatus
             model.currentExportStatus
-        , Accordion.view model.exports
+        , Accordion.view (List.map Export.view model.exports)
         ]
     ]
 

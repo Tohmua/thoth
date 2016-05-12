@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -r public/js && curl http://192.168.33.10/js/App.js && cp node_modules/skeleton-css/css/* public/css/ && elm make app/Main.elm --output=public/js/App.js",
+    "build": "rm -r public/js ; curl http://192.168.33.10/js/App.js && cp node_modules/skeleton-css/css/* public/css/ && elm make app/Main.elm --output=public/js/App.js",
     "watch": "onchange **/*.elm -- npm run build"
   },
   "repository": {
