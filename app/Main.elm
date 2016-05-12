@@ -2,10 +2,11 @@ import Html exposing (Html, div, header, img)
 import Html.Attributes exposing (class, src)
 import Html.App as Html
 
+import Accordion exposing (view)
+import Cards exposing (view)
 import Navigation exposing (view)
 import Export exposing (Model)
 import Status exposing (Status)
-import Accordion exposing (view)
 
 -- Fancy types, hwre
 
@@ -53,8 +54,9 @@ view model =
         , Navigation.view
             model.databaseStatus
             model.currentExportStatus
-        , Accordion.view (List.map Export.view model.exports)
         ]
+    , Cards.view
+    , Accordion.view (List.map Export.view model.exports)
     ]
 
 main =
