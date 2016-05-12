@@ -1,4 +1,5 @@
 import Html exposing (Html, div, header)
+import Html.Attributes exposing (class)
 import Html.App as Html
 
 import Navigation exposing (view)
@@ -32,14 +33,13 @@ update action model = model
 
 -- Application view.
 
-view : Model -> Html
+view : Model -> Html msg
 view model =
   div
     [ class "thoth-container" ]
     [ header
         []
         [ Navigation.view ]
-      ]
     ]
 
 main =
