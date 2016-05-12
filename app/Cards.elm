@@ -1,6 +1,6 @@
 module Cards exposing (view)
 
-import Html exposing (img, li, text, ul )
+import Html exposing (img, li, text, ul)
 import Html.Attributes exposing (class, src)
 
 type Card

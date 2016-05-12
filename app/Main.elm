@@ -30,27 +30,27 @@ init =
   , currentExportStatus = Status.Red
   , systemUpdateStatus = Status.Red
   , exports = [
-    { id = "1dfs"
+    { id = "orsujgoridjgoijdrog"
     , dateTime = "11/05/2016 09:00"
     , stages = []
     },
-    { id = "1dfs"
+    { id = "432869r832yhufhe9yo32"
     , dateTime = "10/05/2016 09:00"
     , stages = []
     },
-    { id = "1dfs"
+    { id = "329r7yf9723y982y30fu23"
     , dateTime = "09/05/2016 09:00"
     , stages = []
     },
-    { id = "1dfs"
+    { id = "2983fy982y3f98239f2"
     , dateTime = "08/05/2016 09:00"
     , stages = []
     },
-    { id = "1dfs"
+    { id = "230fy9283yf0230fu20u12089"
     , dateTime = "07/05/2016 09:00"
     , stages = []
     },
-    { id = "1dfs"
+    { id = "0912u0uf30u032uf0u2309f"
     , dateTime = "06/05/2016 09:00"
     , stages = []
     }
@@ -81,12 +81,12 @@ view model =
             model.currentExportStatus
         ]
     , Cards.view
-    , Accordion.view (List.map Export.view model.exports)
+    , Accordion.view model.exports
     ]
 
 main =
   Html.beginnerProgram
-      { model  = init
-      , view   = view
-      , update = update
-      }
+    { model = init
+    , view = view
+    , update = update
+    }

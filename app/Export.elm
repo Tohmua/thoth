@@ -1,4 +1,4 @@
-module Export exposing (Model, model, view)
+module Export exposing (Model, model)
 
 import Html exposing (Html, section, text)
 import Html.Attributes exposing (class)
@@ -19,19 +19,3 @@ model =
   , dateTime = ""
   , stages = []
   }
-
-
-view : Model -> Html msg
-view model =
-  section
-    []
-    [ section
-      [ class "one column" ]
-      [ text ">" ]
-    , section
-      [ class "five columns" ]
-      [ text model.dateTime ]
-    , section
-      [ class "six columns u-success" ]
-      [ text "Success" ]
-    ]

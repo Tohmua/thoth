@@ -1,14 +1,37 @@
 module Accordion exposing (view)
 
-import Html exposing (Html, section, text, button)
+import Html exposing (Html, section, text, button, div)
 import Html.Attributes exposing (class)
+
+import Export exposing (Model)
+
+type Filter
+  = All
+  | Successful
+  | Failed
+
+type Action
+  = None
+  | UpdateFilter Filter
 
 type alias UUID = String
 
-type alias Model = UUID
+type alias Model =
+  { current : UUID
+  , filter : Filter
+  }
 
-view : List (Html msg) -> Html msg
-view exportHtml =
+update : Action -> Model -> Model
+update action model =
+  case action of
+    None ->
+      model
+
+    UpdateFilter filter ->
+      model
+
+view : List Export.Model -> Html msg
+view exports =
   section
     []
     [ section
@@ -17,12 +40,23 @@ view exportHtml =
       , button [] [ text "Successful" ]
       , button [] [ text "Failed" ]
       ]
-    , section [ class "u-cf" ] []
-    , section [] (List.map (exportRow) exportHtml)
+    , div [ class "u-cf" ] []
+    , section [] (List.map exportRow exports)
     ]
 
-exportRow historyItem =
+exportRow exportItem =
   section
     [ class "row" ]
-    [ historyItem
+    [ section
+      [ class "one column" ]
+      [ text ">" ]
+    , section
+      [ class "three columns" ]
+      [ text exportItem.id ]
+    , section
+      [ class "four columns" ]
+      [ text exportItem.dateTime ]
+    , section
+      [ class "four columns u-success" ]
+      [ text "Success" ]
     ]
