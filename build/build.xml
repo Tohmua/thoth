@@ -2,9 +2,9 @@
 
 <project name="thoth" default="update">
     <property file="build.properties" />
-     <tstamp>
-         <format property="tstamp" pattern="%Y%m%d_%H%M%S" />
-     </tstamp>
+    <tstamp>
+        <format property="tstamp" pattern="%Y%m%d_%H%M%S" />
+    </tstamp>
 
     <target name="build">
         <phingcall target="composer-dev" />
@@ -12,10 +12,11 @@
 
     <target name="update">
         <phingcall target="backup" />
-        <exec command="git fetch" />
+        <exec command="git fetch --tags" />
         <exec outputProperty="git.tag.latest" command="git describe --tags `git rev-list --tags --max-count=1`" dir="${root.dir}"/>
         <exec command="git checkout ${git.tag.latest}" />
         <phingcall target="composer-live" />
+        <phingcall target="do-an-front-end" />
     </target>
 
     <target name="backup">
@@ -40,8 +41,13 @@
      <target name="backup-code">
          <echo msg="Backing Up Code" />
          <copy todir="${root.dir}/backup/${tstamp}">
-             <fileset dir="${root.dir}" />
-             <exclude name="${root.dir}/backup"/>
+            <fileset dir="${root.dir}" >
+                <patternset>
+                    <include name="**/*.*"/>
+                    <exclude name="backup/**"/>
+                    <exclude name="vendor/**"/>
+                </patternset>
+            </fileset>
          </copy>
      </target>
 
@@ -67,5 +73,9 @@
             <arg value="-c" />
             <arg value="php composer.phar install" />
         </exec>
+    </target>
+
+    <target name="do-an-front-end">
+        <echo msg="TODO: do an front end" />
     </target>
 </project>
