@@ -15,16 +15,16 @@ type alias Model =
     Card
 
 
-type Action
+type Msg
     = Dismiss
     | ShowDatabaseSchema
     | ShowDerivedFields
     | ShowUpdateSystem
 
 
-update : Action -> Model -> Model
-update action _ =
-    case action of
+update : Msg -> Model -> Model
+update msg _ =
+    case msg of
         Dismiss ->
             None
 

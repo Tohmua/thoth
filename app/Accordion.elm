@@ -12,11 +12,6 @@ type Msg
     | Failed
 
 
-type Action
-    = None
-    | UpdateFilter Msg
-
-
 view : List Export.Model -> Msg -> Html Msg
 view exports filter =
     section []

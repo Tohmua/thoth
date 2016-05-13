@@ -3,7 +3,7 @@ module Stage exposing (Model, model)
 import Status exposing (Status)
 
 
-type Action
+type Msg
     = CheckingConnection
     | Downloading
     | Verifying
@@ -15,7 +15,7 @@ type Action
 
 type alias Model =
     { dateTime : String
-    , action : Action
+    , action : Msg
     , status : Status.Status
     , info : String
     }
