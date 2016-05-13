@@ -1,7 +1,5 @@
 module Stage exposing (Model, model)
 
-{--where --}
-
 import Status exposing (Status)
 
 

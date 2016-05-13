@@ -1,7 +1,5 @@
 module Cards exposing (view)
 
-{--where --}
-
 import Html exposing (img, li, text, ul)
 import Html.Attributes exposing (class, src)
 
@@ -40,6 +38,7 @@ update action _ =
             UpdateSystem
 
 
+view : Html.Html msg
 view =
     ul [ class "cards row" ]
         [ li [ class "four columns card" ]

@@ -1,11 +1,11 @@
 module Navigation exposing (view)
 
-{--where --}
-
 import Html exposing (nav, ul, li, text, a)
 import Html.Attributes exposing (class, href)
+import Status exposing (Status)
 
 
+view : Status -> Status -> Html.Html msg
 view databaseStatus currentStatus =
     nav [ class "top-navigation eight columns" ]
         [ ul [ class "u-pull-right" ]

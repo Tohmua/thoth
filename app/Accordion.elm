@@ -1,12 +1,9 @@
 module Accordion exposing (view, Msg(..))
 
-{--where <- this fixes sublime's syntax highlighting, sorry Tom ! <- there's a space there, just for you --}
-
 import Html exposing (Html, section, text, button, div)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Export exposing (Model)
-import Status exposing (Status)
 
 
 type Msg

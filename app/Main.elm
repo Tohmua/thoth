@@ -1,7 +1,5 @@
 module Main exposing (..)
 
-{--where --}
-
 import Html exposing (Html, div, header, img)
 import Html.Attributes exposing (class, src)
 import Html.App as Html
@@ -110,6 +108,7 @@ view model =
         ]
 
 
+main : Program Never
 main =
     Html.beginnerProgram
         { model = init

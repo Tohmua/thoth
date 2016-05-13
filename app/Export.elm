@@ -1,9 +1,5 @@
 module Export exposing (Model, model)
 
-{--where --}
-
-import Html exposing (Html, section, text)
-import Html.Attributes exposing (class)
 import Stage exposing (Model)
 
 
