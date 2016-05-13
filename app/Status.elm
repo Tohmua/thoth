@@ -9,12 +9,4 @@ type Status
 
 isSuccessful : Status -> Bool
 isSuccessful status =
-    case status of
-        Red ->
-            False
-
-        Amber ->
-            True
-
-        Green ->
-            True
+    status /= Red
