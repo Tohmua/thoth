@@ -3,7 +3,7 @@ module Accordion exposing (view, Msg(..))
 import Html exposing (Html, section, text, button, div)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
-import Export exposing (Model)
+import Export exposing (Model, isSuccessful)
 
 
 type Msg
@@ -13,12 +13,12 @@ type Msg
 
 
 view : List Export.Model -> Msg -> Html Msg
-view exports filter =
+view exports currentFilter =
     section []
         [ section [ class "u-pull-right" ]
             [ button
                 [ onClick All
-                , if filter == All then
+                , if currentFilter == All then
                     -- this is awful, I'm so sorry
                     class "button-primary"
                   else
@@ -28,7 +28,7 @@ view exports filter =
                 ]
             , button
                 [ onClick Successful
-                , if filter == Successful then
+                , if currentFilter == Successful then
                     class "button-primary"
                   else
                     class ""
@@ -37,7 +37,7 @@ view exports filter =
                 ]
             , button
                 [ onClick Failed
-                , if filter == Failed then
+                , if currentFilter == Failed then
                     class "button-primary"
                   else
                     class ""
@@ -46,21 +46,21 @@ view exports filter =
                 ]
             ]
         , div [ class "u-cf" ] []
-        , section [] (List.map exportRow (List.filter (matchesFilter filter) exports))
+        , section [] (List.map exportRow (List.filter (matchesFilter currentFilter) exports))
         ]
 
 
 matchesFilter : Msg -> Export.Model -> Bool
-matchesFilter filter exportItem =
-    case filter of
+matchesFilter currentFilter exportItem =
+    case currentFilter of
         All ->
             True
 
         Successful ->
-            exportItem.status == "working"
+            Export.isSuccessful exportItem
 
         Failed ->
-            exportItem.status == "broken"
+            not (Export.isSuccessful exportItem)
 
 
 exportRow : Export.Model -> Html Msg
@@ -72,6 +72,8 @@ exportRow exportItem =
             [ text exportItem.id ]
         , section [ class "four columns" ]
             [ text exportItem.dateTime ]
-        , section [ class "four columns u-success" ]
-            [ text exportItem.status ]
+        , if Export.isSuccessful exportItem then
+            section [ class "four columns u-success" ] [ text "Successful" ]
+          else
+            section [ class "four columns u-failed" ] [ text "Failed" ]
         ]

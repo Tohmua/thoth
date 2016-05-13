@@ -1,6 +1,7 @@
-module Export exposing (Model, model)
+module Export exposing (Model, model, isSuccessful)
 
 import Stage exposing (Model)
+import Status
 
 
 type alias UUID =
@@ -11,9 +12,6 @@ type alias Model =
     { id : UUID
     , dateTime : String
     , stages : List Stage.Model
-    , status :
-        String
-        -- TODO: remove this
     }
 
 
@@ -22,7 +20,9 @@ model =
     { id = ""
     , dateTime = ""
     , stages = []
-    , status =
-        "working"
-        -- TODO remove this
     }
+
+
+isSuccessful : Model -> Bool
+isSuccessful model =
+    List.all Status.isSuccessful (List.map .status model.stages)

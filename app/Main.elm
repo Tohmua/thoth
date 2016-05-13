@@ -8,6 +8,7 @@ import Cards exposing (view)
 import Navigation exposing (view)
 import Export exposing (Model)
 import Status exposing (Status)
+import Stage
 
 
 {-| Fancy types, hwre -
@@ -25,7 +26,7 @@ type alias Model =
     , currentExportStatus : Status
     , systemUpdateStatus : Status
     , currentExport : String
-    , filter : Accordion.Msg
+    , currentFilter : Accordion.Msg
     , exports : List Export.Model
     }
 
@@ -36,37 +37,37 @@ init =
     , currentExportStatus = Status.Red
     , systemUpdateStatus = Status.Red
     , currentExport = ""
-    , filter = Accordion.All
+    , currentFilter = Accordion.All
     , exports =
         [ { id = "orsujgoridjgoijdrog"
           , dateTime = "11/05/2016 09:00"
-          , stages = []
-          , status = "working"
+          , stages =
+                [ { dateTime = "now"
+                  , action = Stage.CheckingConnection
+                  , status = Status.Red
+                  , info = ""
+                  }
+                ]
           }
         , { id = "432869r832yhufhe9yo32"
           , dateTime = "10/05/2016 09:00"
           , stages = []
-          , status = "broken"
           }
         , { id = "329r7yf9723y982y30fu23"
           , dateTime = "09/05/2016 09:00"
           , stages = []
-          , status = "working"
           }
         , { id = "2983fy982y3f98239f2"
           , dateTime = "08/05/2016 09:00"
           , stages = []
-          , status = "working"
           }
         , { id = "230fy9283yf0230fu20u12089"
           , dateTime = "07/05/2016 09:00"
           , stages = []
-          , status = "working"
           }
         , { id = "0912u0uf30u032uf0u2309f"
           , dateTime = "06/05/2016 09:00"
           , stages = []
-          , status = "working"
           }
         ]
     }
@@ -89,7 +90,7 @@ update msg model =
 
         UpdateFilter newFilter ->
             { model
-                | filter = newFilter
+                | currentFilter = newFilter
             }
 
 
@@ -104,7 +105,7 @@ view model =
                 model.currentExportStatus
             ]
         , Cards.view
-        , (Html.map (\newFilter -> UpdateFilter newFilter) (Accordion.view model.exports model.filter))
+        , (Html.map (\newFilter -> UpdateFilter newFilter) (Accordion.view model.exports model.currentFilter))
         ]
 
 

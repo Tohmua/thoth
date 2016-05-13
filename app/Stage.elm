@@ -1,4 +1,4 @@
-module Stage exposing (Model, model)
+module Stage exposing (Model, Msg(..), model)
 
 import Status exposing (Status)
 
