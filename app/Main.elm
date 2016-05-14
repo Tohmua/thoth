@@ -100,7 +100,9 @@ view : Model -> Html Msg
 view model =
     div [ class "container" ]
         [ header [ class "row" ]
-            [ div [ class "four columns" ] [ img [ src "http://placehold.it/140x70" ] [] ]
+            [ div [ class "four columns" ]
+                [ img [ src "http://placehold.it/140x70" ] []
+                ]
             , Navigation.view model.databaseStatus
                 model.currentExportStatus
             ]
