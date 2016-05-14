@@ -1,6 +1,6 @@
 module Accordion exposing (view, Msg(..))
 
-import Html exposing (Html, section, text, button, div)
+import Html exposing (Html, section, text, button, div, h2)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Export exposing (Model, isSuccessful)
@@ -15,39 +15,43 @@ type Msg
 view : List Export.Model -> Msg -> Html Msg
 view exports currentFilter =
     section []
-        [ section [ class "u-pull-right" ]
-            [ button
-                [ onClick All
-                , if currentFilter == All then
-                    -- this is awful, I'm so sorry
-                    class "button-primary"
-                  else
-                    class ""
-                ]
-                [ text "All"
-                ]
-            , button
-                [ onClick Successful
-                , if currentFilter == Successful then
-                    class "button-primary"
-                  else
-                    class ""
-                ]
-                [ text "Successful"
-                ]
-            , button
-                [ onClick Failed
-                , if currentFilter == Failed then
-                    class "button-primary"
-                  else
-                    class ""
-                ]
-                [ text "Failed"
-                ]
-            ]
+        [ h2 [ class "u-pull-left" ]
+            [ text "Export Log" ]
+        , section [ class "u-pull-right" ]
+            (filterButtons currentFilter)
         , div [ class "u-cf" ] []
-        , section [] (List.map exportRow (List.filter (matchesFilter currentFilter) exports))
+        , section []
+            (exports
+                |> List.filter (matchesFilter currentFilter)
+                |> List.map exportRow
+            )
         ]
+
+
+filterButtons : Msg -> List (Html Msg)
+filterButtons currentFilter =
+    let
+        messages =
+            [ All, Successful, Failed ]
+    in
+        List.map
+            (\message ->
+                button
+                    [ onClick message
+                    , class (buttonClass currentFilter message)
+                    ]
+                    [ text (toString message)
+                    ]
+            )
+            messages
+
+
+buttonClass : Msg -> Msg -> String
+buttonClass currentFilter msg =
+    if currentFilter == msg then
+        "button-primary"
+    else
+        ""
 
 
 matchesFilter : Msg -> Export.Model -> Bool
