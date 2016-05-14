@@ -2,6 +2,10 @@
   color: green;
 }
 
+.u-warning {
+  color: orange;
+}
+
 .u-failed {
   color: red;
 }

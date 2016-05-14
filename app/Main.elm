@@ -22,7 +22,7 @@ type Dialog
 {-| Application state -
 -}
 type alias Model =
-    { databaseStatus : Status
+    { connectionStatus : Status
     , currentExportStatus : Status
     , systemUpdateStatus : Status
     , currentExport : String
@@ -33,8 +33,8 @@ type alias Model =
 
 init : Model
 init =
-    { databaseStatus = Status.Red
-    , currentExportStatus = Status.Red
+    { connectionStatus = Status.Amber
+    , currentExportStatus = Status.Green
     , systemUpdateStatus = Status.Red
     , currentExport = ""
     , currentFilter = Accordion.All
@@ -103,11 +103,11 @@ view model =
             [ div [ class "four columns" ]
                 [ img [ src "http://placehold.it/140x70" ] []
                 ]
-            , Navigation.view model.databaseStatus
+            , Navigation.view model.connectionStatus
                 model.currentExportStatus
             ]
         , Cards.view
-        , (Html.map (\newFilter -> UpdateFilter newFilter) (Accordion.view model.exports model.currentFilter))
+        , (Html.map UpdateFilter (Accordion.view model.exports model.currentFilter))
         ]
 
 
